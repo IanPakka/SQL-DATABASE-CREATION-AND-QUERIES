@@ -14,20 +14,21 @@ FROM vehicles v
 GROUP BY MechanicID;
 
 
-–Revenue on Location
+-–Revenue on Location
+ 
 SELECT Location, AVG(Cost) as AverageRev, COUNT(CustomerID) as NumberOfCustomers, SUM(Cost) as TotalRevenue
 FROM JumpSession natural join goes
 GROUP BY Location
 ORDER BY TotalRevenue DESC;
 
-–Customers by jump 
+-–Customers by jump 
 
 
 SELECT CustomerID, Name, DOB, SessionID FROM Customer Natural JOIN goes   
 WHERE CustomerID IN(SELECT CustomerID FROM goes) AND GROUPBY sessionID, CustomerID
 HAVING COUNT(SESSIONID) >= 2 ;
 
-–Equipment Status
+-–Equipment Status
 
 SELECT EquipmentID, Type, Status, LastCheckDate
 FROM Equipment where status = 'Available';
